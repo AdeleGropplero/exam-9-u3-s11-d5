@@ -9,6 +9,7 @@ const initialState = {
 const MyMainReducer = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_SONGS:
+      console.log("New content:", action.payload);
       return {
         ...state,
         content: {

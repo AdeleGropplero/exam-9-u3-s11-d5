@@ -15,7 +15,6 @@ body {
 }
 
 .myAside {
-  background-color: black;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -208,4 +207,11 @@ footer a {
 .heart-icon {
   color: white;
   font-size: 24px;
+}
+
+.time {
+  color: white;
+  margin-top: 22px;
+  margin-left: 10px;
+  margin-bottom: 0;
 }

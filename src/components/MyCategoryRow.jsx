@@ -5,9 +5,11 @@ import { getSongsWithThunk, selectedSong } from "../redux/action";
 
 const MyCategoryRow = (props) => {
   const dispatch = useDispatch();
+
   const fetchedSongs = useSelector(
     (state) => state.songs.content[props.query] || []
   );
+  console.log(fetchedSongs);
   const isSongSelected = useSelector((state) => state.songs.selected);
 
   useEffect(() => {
