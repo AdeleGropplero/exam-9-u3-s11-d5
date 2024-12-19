@@ -1,6 +1,15 @@
+import { useState } from "react";
 import { Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const MyAside = () => {
+  const likedSongs = useSelector((state) => state.liked.liked);
+  const [showFavorites, setShowFavorites] = useState(false);
+
+  const handleClick = () => {
+    setShowFavorites(!showFavorites);
+  };
+
   return (
     <>
       <Container
@@ -30,9 +39,38 @@ const MyAside = () => {
           </div>
 
           <div>
-            <a className="nav-item nav-link d-flex align-items-center" href="#">
+            <a
+              className="nav-item nav-link d-flex align-items-center"
+              href="#"
+              onClick={handleClick}
+            >
               <i className="bi bi-suit-heart-fill"></i>&nbsp; Your Favorite
             </a>
+
+            {likedSongs.length > 0 && showFavorites && (
+              <div className="favorites-list">
+                {likedSongs.map((song) => (
+                  <div key={song.id} className="d-flex align-items-center song">
+                    <img
+                      src={song.album.cover_small}
+                      alt={song.title}
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        marginRight: "10px"
+                      }}
+                    />
+                    <div>
+                      <p className="playbarP">{song.title}</p>
+                      <p className="playbarP">{song.artist.name}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {likedSongs.length === 0 && showFavorites && (
+              <p className="nothingYet">No favorite songs yet. Add some!</p>
+            )}
           </div>
 
           <div className="input-group mt-3">
